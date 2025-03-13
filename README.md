@@ -114,7 +114,7 @@ lista1_Matheus(Werner).zip
 The file must contain the three required files (`main.cpp`, `PatientArray.h`, and `PatientArray.cpp`) and be sent to the institutional email `matheus.werner@fgv.br` by **Monday, March 17, at 11:59 PM**.
 
 ## Author
-This repository was developed by **[[**me**](https://github.com/arthurabello)]** for the [**Data Structures and Algorithms**](https://github.com/matwerner/fgv-ed) course.
+This repository was developed by **[me](https://github.com/arthurabello)** for the [**Data Structures and Algorithms**](https://github.com/matwerner/fgv-ed) course.
 
 ## License
 This project is licensed under the [**GNU** License](https://github.com/arthurabello/EDA-Lista-1/blob/main/LICENSE)
