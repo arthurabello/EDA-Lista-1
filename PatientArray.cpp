@@ -1,5 +1,6 @@
 #include "PatientArray.h"
 #include <iostream>
+#include <cstring>
 
 namespace PatientArrayTAD {
 
@@ -57,7 +58,36 @@ namespace PatientArrayTAD {
         }
     
         patient_array->patients[patient_array->size] = patient; // inserts the new fella
-        patient_array->size++;  // updates the size (one more fella)
-    }    
+        patient_array->size++;  // updates the size (one more     int findNextPatient(PatientArray *pa);fella)
+    }
     
-}
+    int comparePatients(Patient patient_1, Patient patient_2) { 
+        if (patient_1.severity > patient_2.severity) {
+            return 1;
+            
+        } else if (patient_1.severity < patient_2.severity) {
+            return -1;
+        }
+        return 0; //same severity
+    }
+    
+    int findNextPatient(PatientArray *patient_array) {
+        if (!patient_array || patient_array->size == 0) return -1; 
+
+        int most_urgent_index = 0;
+
+        for (int i = 1; i < patient_array->size; i++) {
+            int comparison = comparePatients(patient_array->patients[i], patient_array->patients[most_urgent_index]);
+
+            if (comparison == 1) {
+                most_urgent_index = i; //more urgent than the previous one
+
+            } else if (comparison == 0) {
+                if (strcmp(patient_array->patients[i].arrival_time, patient_array->patients[most_urgent_index].arrival_time) < 0) {
+                    most_urgent_index = i; 
+                }
+            }
+        }
+        return most_urgent_index;
+    }
+
