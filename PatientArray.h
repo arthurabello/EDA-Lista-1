@@ -71,10 +71,33 @@ namespace PatientArrayTAD {
      * @param patient_array Pointer to the PatientArray structure to be destroyed.
      */
 
+    int findNextPatient(PatientArray *patient_array);
 
-    int findNextPatient(PatientArray *pa);
-    void removePatient(PatientArray *pa, int index);
-    Patient popNextPatient(PatientArray *pa);
+        /**
+     * @brief Finds the index of the next patient to be attended.
+     * 
+     * The function determines the most urgent patient based on severity.
+     * If two or more patients have the same severity, the patient who arrived first is chosen.
+     * 
+     * @param patient_array Pointer to the PatientArray structure.
+     * @return The index of the most urgent patient, or -1 if the list is empty.
+     */
+
+    int comparePatients(Patient patient_1, Patient patient_2);
+
+        /**
+     * @brief Compares two patients based on severity.
+     * 
+     * A patient with higher severity is considered more urgent.
+     * If both have the same severity, they are considered equal.
+     * 
+     * @param patient_1 First patient to compare.
+     * @param patient_2 Second patient to compare.
+     * @return 1 if patient_1 is more urgent, -1 if patient_2 is more urgent, 0 if they are equally urgent.
+     */
+
+    void removePatient(PatientArray *patient_array, int index_of_patient_to_be_removed);
+    Patient popNextPatient(PatientArray *patient_array);
 
 }
 
