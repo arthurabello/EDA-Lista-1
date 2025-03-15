@@ -23,7 +23,6 @@ namespace PatientArrayTAD {
         }
 
     }
-        
     
     void printPatients(PatientArray *patient_array) {
 
@@ -39,4 +38,26 @@ namespace PatientArrayTAD {
 
         }
     }
+
+    void insertPatient(PatientArray *patient_array, Patient patient) {
+
+        if (!patient_array) return; // if not nullptr
+    
+        if (patient_array->size >= (3.0 / 4.0) * patient_array->capacity) { // checks if capacity is at 75% full
+            int new_patient_array_capacity = patient_array->capacity * 2;
+            Patient* new_patient_array = new Patient[new_patient_array_capacity]; // allocates a bigger one
+    
+            for (int i = 0; i < patient_array->size; i++) {
+                new_patient_array[i] = patient_array->patients[i]; // sends everyone to the new array
+            }
+    
+            delete[] patient_array->patients; // frees the previous one
+            patient_array->patients = new_patient_array; // changes the pointer to the new array
+            patient_array->capacity = new_patient_array_capacity; // updates the capacity
+        }
+    
+        patient_array->patients[patient_array->size] = patient; // inserts the new fella
+        patient_array->size++;  // updates the size (one more fella)
+    }    
+    
 }
