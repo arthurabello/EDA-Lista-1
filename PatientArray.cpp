@@ -126,7 +126,7 @@ namespace PatientArrayTAD {
             return empty_patient; //if it's empty
         }
 
-        int index_of_the_most_urgent_patient = findNextPatient(pa); //finds the index of the most urgent one
+        int index_of_the_most_urgent_patient = findNextPatient(patient_array); //finds the index of the most urgent one
         Patient next_patient = patient_array->patients[index_of_the_most_urgent_patient]; 
 
         removePatient(patient_array, index_of_the_most_urgent_patient); //removes the most urgent one
