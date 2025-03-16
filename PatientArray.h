@@ -112,6 +112,18 @@ namespace PatientArrayTAD {
 
     Patient popNextPatient(PatientArray *patient_array);
 
+        /**
+     * @brief Removes and returns the next patient to be attended.
+     * 
+     * - Finds the most urgent patient using `findNextPatient()`.
+     * - Removes the patient from the array while maintaining contiguity.
+     * - Returns the removed patient.
+     * - If the array is empty, returns a default "empty" patient.
+     * 
+     * @param patient_array Pointer to the PatientArray structure.
+     * @return The Patient struct of the removed patient.
+     */
+
 }
 
 #endif
