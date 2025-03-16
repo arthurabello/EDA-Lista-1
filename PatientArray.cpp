@@ -6,7 +6,8 @@ namespace PatientArrayTAD {
 
     PatientArray* initializePatientArray() {
 
-        PatientArray* patient_array = new PatientArray; //allocating memory for the struct
+        PatientArray* patient_array = new PatientArray;  //allocating memory for the struct
+        if (!patient_array) return nullptr;
 
         patient_array->capacity = 4;
         patient_array->size = 0;
@@ -19,24 +20,23 @@ namespace PatientArrayTAD {
     void destroyPatientArray(PatientArray* patient_array) {
 
         if (patient_array) { //checks if it's null 
-        delete[] patient_array->patients; //frees the array
-            delete patient_array;  //frees the struct
+            delete[] patient_array->patients; //frees the array
+            delete patient_array; //frees the struct
         }
 
     }
     
     void printPatients(PatientArray *patient_array) {
+        if (!patient_array) return; //checking for unvalid entries
 
-        cout << "Capacity: " << patient_array->capacity << endl;
-        cout << "Current size: " << patient_array->size << endl;
-        cout << "Patients: " << endl;
+        std::cout << "Capacity: " << patient_array->capacity << std::endl;
+        std::cout << "Current size: " << patient_array->size << std::endl;
+        std::cout << "Patients: " << std::endl;
 
-        for(int i = 0 ; i < patient_array->size ; i++) {
-
-            cout << "* <" << patient_array->patients[i].arrival_time 
-            << "> | <" << patient_array->patients[i].severity 
-            << "> | <" << patient_array->patients[i].name << ">" << endl;
-
+        for(int i = 0; i < patient_array->size; i++) {
+            std::cout << "* <" << patient_array->patients[i].arrival_time 
+                      << "> | <" << patient_array->patients[i].severity 
+                      << "> | <" << patient_array->patients[i].name << ">" << std::endl;
         }
     }
 
@@ -58,34 +58,23 @@ namespace PatientArrayTAD {
         }
     
         patient_array->patients[patient_array->size] = patient; // inserts the new fella
-        patient_array->size++;  // updates the size (one more     int findNextPatient(PatientArray *pa);fella)
+        patient_array->size++;  // updates the size (one more fella)
     }
     
-    int comparePatients(Patient patient_1, Patient patient_2) { 
-        if (patient_1.severity > patient_2.severity) {
-            return 1;
-
-        } else if (patient_1.severity < patient_2.severity) {
-            return -1;
-        }
-        return 0; //same severity
+    int comparePatients(Patient patient_1, Patient patient_2) {
+        if (patient_1.severity > patient_2.severity) return 1;
+        if (patient_1.severity < patient_2.severity) return -1;
+        return strcmp(patient_1.arrival_time, patient_2.arrival_time) < 0 ? 1 : -1; //checking the arrival time
     }
     
     int findNextPatient(PatientArray *patient_array) {
-        if (!patient_array || patient_array->size == 0) return -1; 
+        if (!patient_array || patient_array->size == 0) return -1;
 
-        int most_urgent_index = 0; 
+        int most_urgent_index = 0;
 
         for (int i = 1; i < patient_array->size; i++) {
-            int comparison = comparePatients(patient_array->patients[i], patient_array->patients[most_urgent_index]);
-
-            if (comparison == 1) {
-                most_urgent_index = i; //more urgent than the previous one
-
-            } else if (comparison == 0) {
-                if (strcmp(patient_array->patients[i].arrival_time, patient_array->patients[most_urgent_index].arrival_time) < 0) {
-                    most_urgent_index = i; 
-                }
+            if (comparePatients(patient_array->patients[i], patient_array->patients[most_urgent_index]) > 0) {
+                most_urgent_index = i;
             }
         }
         return most_urgent_index;
@@ -114,28 +103,19 @@ namespace PatientArrayTAD {
             patient_array->patients = new_array;
             patient_array->capacity = new_capacity;
         }
-
+    }
 
     
     Patient popNextPatient(PatientArray *patient_array) {
         if (!patient_array || patient_array->size == 0) {
-            Patient empty_patient;
-            strcpy(empty_patient.name, "");
-            empty_patient.severity = 0;
-            strcpy(empty_patient.arrival_time, "00h00");
-            return empty_patient; //if it's empty
+            static const Patient EMPTY_PATIENT = { "", 0, "00h00" }; //returns empty patient
+            return EMPTY_PATIENT;
         }
 
-        int index_of_the_most_urgent_patient = findNextPatient(patient_array); //finds the index of the most urgent one
-        Patient next_patient = patient_array->patients[index_of_the_most_urgent_patient]; 
+        int index_of_most_urgent = findNextPatient(patient_array);
+        Patient next_patient = patient_array->patients[index_of_most_urgent];
 
-        removePatient(patient_array, index_of_the_most_urgent_patient); //removes the most urgent one
-
-        return next_patient; 
-    }
- 
+        removePatient(patient_array, index_of_most_urgent);
+        return next_patient;
     }
 }
-
-    
-
