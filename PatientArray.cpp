@@ -114,6 +114,28 @@ namespace PatientArrayTAD {
             patient_array->patients = new_array;
             patient_array->capacity = new_capacity;
         }
+
+
+    
+    Patient popNextPatient(PatientArray *patient_array) {
+        if (!patient_array || patient_array->size == 0) {
+            Patient empty_patient;
+            strcpy(empty_patient.name, "");
+            empty_patient.severity = 0;
+            strcpy(empty_patient.arrival_time, "00h00");
+            return empty_patient; //if it's empty
+        }
+
+        int index_of_the_most_urgent_patient = findNextPatient(pa); //finds the index of the most urgent one
+        Patient next_patient = patient_array->patients[index_of_the_most_urgent_patient]; 
+
+        removePatient(patient_array, index_of_the_most_urgent_patient); //removes the most urgent one
+
+        return next_patient; 
     }
+ 
+    }
+}
+
     
 
