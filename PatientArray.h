@@ -97,6 +97,19 @@ namespace PatientArrayTAD {
      */
 
     void removePatient(PatientArray *patient_array, int index_of_patient_to_be_removed);
+
+        /**
+     * @brief Removes a patient from the PatientArray at the specified index.
+     * 
+     * - All subsequent patients are shifted left to maintain contiguity.
+     * - The array size is reduced by 1.
+     * - If the number of patients falls below 25% of the capacity, the array shrinks
+     *   by half, ensuring that its capacity never drops below 4.
+     * 
+     * @param patient_array Pointer to the PatientArray structure.
+     * @param index_of_patient_to_be_removed The index of the patient to be removed.
+     */
+
     Patient popNextPatient(PatientArray *patient_array);
 
 }
