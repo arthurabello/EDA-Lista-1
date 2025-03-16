@@ -81,30 +81,28 @@ namespace PatientArrayTAD {
     }
 
     void removePatient(PatientArray *patient_array, int index_of_patient_to_be_removed) {
-        if (!patient_array || index_of_patient_to_be_removed < 0 || index_of_patient_to_be_removed >= patient_array->size) { //checking for unvalid entries
+        if (!patient_array || index_of_patient_to_be_removed < 0 || index_of_patient_to_be_removed >= patient_array->size) {
             return; 
         }
     
         for (int i = index_of_patient_to_be_removed; i < patient_array->size - 1; i++) {
-            patient_array->patients[i] = patient_array->patients[i + 1]; //realocating every entry to the right and overwriting the one to be deleted
+            patient_array->patients[i] = patient_array->patients[i + 1];
         }
     
-        patient_array->size--; //updating the size
+        patient_array->size--;
     
-        if (patient_array->size < (patient_array->capacity / 4) && patient_array->capacity > 4) {
+        if (patient_array->size <= patient_array->capacity / 4 && patient_array->capacity > 4) {
             int new_capacity = patient_array->capacity / 2;
-            Patient* new_array = new Patient[new_capacity]; //creating a new array with half the size and sending every patient to the new array
-
-            for (int i = 0; i < patient_array->size; i++) {
-                new_array[i] = patient_array->patients[i];
-            }
+            Patient* new_array = new Patient[new_capacity];
     
-            delete[] patient_array->patients; //deleting the old array
+            std::copy(patient_array->patients, patient_array->patients + patient_array->size, new_array);
+    
+            delete[] patient_array->patients;
             patient_array->patients = new_array;
             patient_array->capacity = new_capacity;
-        }
+    
+       }
     }
-
     
     Patient popNextPatient(PatientArray *patient_array) {
         if (!patient_array || patient_array->size == 0) {
