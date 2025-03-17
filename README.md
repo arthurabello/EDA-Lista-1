@@ -48,7 +48,7 @@ PatientArray * initializePatientArray();
 ### 2. Displaying the List of Patients
 Displays stored patients, formatting the output correctly.
 ```cpp
-void printPatients(PatientArray *pa);
+void printPatients(PatientArray *patient_array);
 ```
 Expected output format:
 ```
@@ -63,35 +63,35 @@ Patients:
 ### 3. Inserting Patients
 Adds a patient to the end of the array and expands capacity if necessary.
 ```cpp
-void insertPatient(PatientArray *pa, Patient p);
+void insertPatient(PatientArray *patient_array, Patient patient);
 ```
 
 ### 4. Finding the Next Patient to be Attended
 Finds the index of the most urgent patient based on severity and arrival time.
 ```cpp
-int findNextPatient(PatientArray *pa);
+int findNextPatient(PatientArray *patient_array);
 ```
 
 ### 5. Removing Patients
 Removes a patient from a specific position and reduces the array capacity when necessary.
 ```cpp
-void removePatient(PatientArray *pa, int index);
+void removePatient(PatientArray *patient_array, int index_of_patient_to_be_removed);
 ```
 
 ### 6. Removing and Returning the Next Patient
 Finds and removes the most urgent patient, returning them by value.
 ```cpp
-Patient popNextPatient(PatientArray *pa);
+Patient popNextPatient(PatientArray *patient_array);
 ```
 
 ## Compilation and Execution
-To compile the code, use a **G++** compiler and run the following command in the terminal:
+To compile the code, use the **Makefile** built to compile and run the code, do this by using:
 ```sh
-g++ -o main main.cpp PatientArray.cpp
+make
 ```
 To execute the program:
 ```sh
-./main
+./patient_manager
 ```
 
 ## Project Requirements
@@ -118,4 +118,3 @@ This repository was developed by **[me](https://github.com/arthurabello)** for t
 
 ## License
 This project is licensed under the [**GNU** License](https://github.com/arthurabello/EDA-Lista-1/blob/main/LICENSE)
-
