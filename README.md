@@ -1,7 +1,7 @@
 # List 1 - TAD PatientArray
 
 ## Introduction
-This repository contains the solution for **List 1 - TAD PatientArray**, developed in **C++**, The objective of this project is to implement an Abstract Data Type (**ADT**) to store and dynamically manage a list of patients, ensuring efficient memory usage.
+This repository contains the solution for [**List 1 - TAD PatientArray**](https://github.com/matwerner/fgv-ed/blob/main/listas/lista1.md), developed in **C++**, The objective of this project is to implement an Abstract Data Type (**ADT**) to store and dynamically manage a list of patients, ensuring efficient memory usage.
 
 ## Data Structures
 
@@ -96,25 +96,6 @@ To execute the program:
 ```sh
 ./patient_manager
 ```
-
-## Project Requirements
-- The code must compile without errors.
-- All functions must follow the specified signatures.
-- The namespace `PatientArrayTAD` must be used to avoid conflicts.
-- Good programming practices must be followed:
-  - Clear documentation of functions.
-  - Checking for null pointers and invalid memory accesses.
-  
-## Submission
-The final code must be submitted as a **ZIP** file with the name:
-```
-lista1_{full_name}.zip
-```
-Example:
-```
-lista1_Matheus(Werner).zip
-```
-The file must contain the three required files (`main.cpp`, `PatientArray.h`, and `PatientArray.cpp`) and be sent to the institutional email `matheus.werner@fgv.br` by **Monday, March 17, at 11:59 PM**.
 
 ## Author
 This repository was developed by **[me](https://github.com/arthurabello)** for the [**Data Structures and Algorithms**](https://github.com/matwerner/fgv-ed) course.
