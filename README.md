@@ -32,9 +32,9 @@ struct PatientArray {
 
 ## File Structure
 The code is organized as follows:
-- **`main.cpp`**: Main file containing tests for all implemented functions.
-- **`PatientArray.h`**: Header file with declarations of functions and structures of the ADT.
-- **`PatientArray.cpp`**: Implementation of the ADT functions.
+- [**`main.cpp`**](https://github.com/arthurabello/eda-lista-1/blob/main/main.cpp): Main file containing tests for all implemented functions.
+- [**`PatientArray.h`**](https://github.com/arthurabello/eda-lista-1/blob/main/PatientArray.h): Header file with declarations of functions and structures of the ADT.
+- [**`PatientArray.cpp`**](https://github.com/arthurabello/eda-lista-1/blob/main/PatientArray.cpp): Implementation of the ADT functions.
 
 ## Implemented Features
 The `PatientArray` library includes the following functions:
@@ -85,11 +85,14 @@ Patient popNextPatient(PatientArray *patient_array);
 ```
 
 ## Compilation and Execution
-To compile the code, use the **Makefile** built to compile and run the code, do this by using:
+To compile the code, use the [**Makefile**](https://github.com/arthurabello/eda-lista-1/blob/main/Makefile) built to compile and run the code, do this by using:
+
 ```sh
 make
 ```
+
 To execute the program:
+
 ```sh
 ./patient_manager
 ```
